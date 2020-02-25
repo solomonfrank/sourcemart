@@ -1,5 +1,5 @@
 import sendToEmail from '../lib/sendMail';
-import { SENDGRID_SIGNIP_TEMPLATE_ID, CLIENT_URL } from '../config/constant';
+import { SENDGRID_SIGNIP_TEMPLATE_ID } from '../config/constant';
 
 export const sendEmailVerification = async (req, res) => {
   try {

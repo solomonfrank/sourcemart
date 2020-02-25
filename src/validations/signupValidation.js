@@ -1,4 +1,7 @@
-import Joi from '@hapi/joi';
+import BaseJoi from '@hapi/joi';
+import Extension from '@hapi/joi-date';
+
+const Joi = BaseJoi.extend(Extension);
 
 const signupSchema = Joi.object({
   firstName: Joi.string()
@@ -13,14 +16,15 @@ const signupSchema = Joi.object({
     .required(),
 
   password: Joi.string()
-    .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
     .required(),
 
   confirmPassword: Joi.ref('password'),
 
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-    .required()
+    .required(),
+  changedPassword: Joi.date().format('YYYY-MM-DD')
 });
 
 export default signupSchema;

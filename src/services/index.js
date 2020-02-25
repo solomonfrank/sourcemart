@@ -7,3 +7,13 @@ export const findOrCreate = (model, payload) =>
       ...payload
     }
   });
+
+export const findUser = (model, payload) =>
+  model.findOne({
+    where: {
+      email: payload
+    },
+    logging: false
+  });
+
+export const findByPk = (model, id) => model.findByPk(id);
