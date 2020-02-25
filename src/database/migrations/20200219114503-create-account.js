@@ -30,6 +30,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      changedPassword: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
 
       createdAt: {
         allowNull: false,
