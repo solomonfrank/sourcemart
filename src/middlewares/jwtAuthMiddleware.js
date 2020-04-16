@@ -36,6 +36,7 @@ export const jwtProtect = catchAsync(async (req, res, next) => {
     }
 
     const freshUser = await findByPk(Account, decoded.id);
+
     if (!freshUser) {
       return next(new AppError('user from does not exist', 401));
     }

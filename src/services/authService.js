@@ -35,6 +35,9 @@ export const signupService = catchAsync(async (req, res, next) => {
       verificationLink: `${process.env.CLIENT_BASE_URL}/email-verification?token=${accessToken}`
     });
   }
+
+  const fullName = `${req.body.firstName} ${req.body.lastName}`;
+  await account.createUserInfo({ fullName });
   account.dataValues.token = accessToken;
 
   return res.status(201).json({

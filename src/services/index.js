@@ -17,3 +17,13 @@ export const findUser = (model, payload) =>
   });
 
 export const findByPk = (model, id) => model.findByPk(id);
+
+export const updateUser = async (model, email, payload) =>
+  model.update(payload, {
+    where: {
+      email
+    },
+    returning: true,
+    logging: false,
+    plain: false
+  });
