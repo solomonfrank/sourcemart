@@ -26,6 +26,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      passwordResetToken: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      passwordResetTokenExpires: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
       verified: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -43,8 +51,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Account.associate = () => {
+  Account.associate = models => {
     // associations can be defined here
+    Account.hasOne(models.Profile, {
+      foreignKey: 'accountId',
+      otherKey: 'profileId',
+      as: 'userInfo'
+    });
   };
   return Account;
 };
